@@ -4,6 +4,7 @@
 // say yes, program continues to show list of 5 categories of food that the user can choose from.
 // After choosing the type of food category, the program will proceed to ask the user what budget range they are trying to stay in.
 // After choosing the budget range, the program will only list the food items and the prices for the specified budget.
+//The location and the name of the restaurant will be displayed as well.
 // Along with the food items, the address for each of the places will be displayed. After the food items are displayed,
 // the program will prompt the user again, asking if they would like to search again. If user responds with "yes",
 // the different categories pop up again and the process restarts. If the user responds with "no", the program terminates.
@@ -99,14 +100,12 @@ public class GrubaHubHub {
 		String ColdstoneL = "505 E Green St, Champaign, IL 61820";
 		String ParisL = "601 S 6th St suite 106, Champaign, IL 61820";
 		// End of Locations
-
 		// Scanner for user Input
 		Scanner userInput = new Scanner(System.in);
 		// User response for category of food
 		int category;
 		// User response for the type of budget the individual has
 		int budget;
-
 		String hungerResponse;
 		System.out.println("Hello! Welcome to Gruba Hub Hub. Are you feeling hungry today?");
 		hungerResponse = userInput.next();
