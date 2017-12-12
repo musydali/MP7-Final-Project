@@ -1,4 +1,14 @@
 
+//MP7 Final Project
+//Brief Description: Program starts with asking user if they are hungry. If they are not, program terminates. If they 
+// say yes, program continues to show list of 5 categories of food that the user can choose from.
+// After choosing the type of food category, the program will proceed to ask the user what budget range they are trying to stay in.
+// After choosing the budget range, the program will only list the food items and the prices for the specified budget.
+// Along with the food items, the address for each of the places will be displayed. After the food items are displayed,
+// the program will prompt the user again, asking if they would like to search again. If user responds with "yes",
+// the different categories pop up again and the process restarts. If the user responds with "no", the program terminates.
+//Mustafa Ali && YJ Park
+//NetID: mustafa3 && yjp2
 import java.util.*;
 
 public class GrubaHubHub {
@@ -26,7 +36,7 @@ public class GrubaHubHub {
 		double[] ChipotleP = new double[] { 7.41, 8.55, 7.92, 7.41, 7.41, 4.84, 3.70 };
 		String[] Maize = new String[] { "Guacomole", "Nachos", "Taco Americano", "Taco Mexica", "Taco de Lomo",
 				"Taco Pescado", "Taco Campesino", "Taco Veggie", "Burrito", "Torta" };
-		double[] MaizeP = new double[] { 6.95, 9.95, 2.99, 3.25, 3.45, 3.25, 3.45, 5.25, 2.5, 6.40, 6.45 };
+		double[] MaizeP = new double[] { 6.95, 9.95, 2.99, 3.25, 3.45, 3.25, 5.50, 3.45, 6.75, 7.50 };
 		String[] BurritoKing = new String[] { "Cheese Nachos", "Cheese, Beans and Beef Nachos", "Steak Nachos Fajita",
 				"Breakfast Burrito", "Burrito King", "Super Burrito", "Acapulco", "Huevos a la Mexicana" };
 		double[] BurritoKingP = new double[] { 4.00, 6.25, 7.50, 6.25, 9.99, 8.49, 10.50, 6.25 };
@@ -69,8 +79,32 @@ public class GrubaHubHub {
 				"Signature Crepe", "Cheese Cake Delight", "Paris Super Crepe", "Milk Shakes", "LighBulb Drinks" };
 		double[] ParisSuperP = new double[] { 6.50, 6.95, 7.50, 7.50, 7.50, 7.50, 4.00, 4.95 };
 		// End of Arrays
+
+		// Locations
+		String CravingsL = "603 S Wright St, Champaign, IL 61820";
+		String SakanayaL = "403 E Green St, Champaign, IL 61820";
+		String SpoonHouseL = "616 E Green St, Champaign, IL 61820";
+		String GoldenWokL = "405 E University Ave, Champaign, IL 61820";
+		String ChipotleL = "528 E Green St #101, Champaign, IL 61820";
+		String MaizeL = "60 E Green St, Champaign, IL 61820";
+		String BurritoKingL = "408 E Green St, Champaign, IL 61820";
+		String McDonaldsL = "616 E Green St, Champaign, IL 61820";
+		String BurgerKingL = "1106 W University Ave, Urbana, IL 61801";
+		String SubwayL = "610 E Daniel St, Champaign, IL 61820";
+		String PaneraL = "616 E Green St, Champaign, IL 61820";
+		String AmbarL = "605 S Wright St, Champaign, IL 61820";
+		String BombayL = "403 E Green St, Champaign, IL 61820";
+		String AmaravatiL = "2501 Village Green Pl, Champaign, IL 61822";
+		String InsomniaL = "502 E John St #5, Champaign, IL 61820";
+		String ColdstoneL = "505 E Green St, Champaign, IL 61820";
+		String ParisL = "601 S 6th St suite 106, Champaign, IL 61820";
+		// End of Locations
+
+		// Scanner for user Input
 		Scanner userInput = new Scanner(System.in);
+		// User response for category of food
 		int category;
+		// User response for the type of budget the individual has
 		int budget;
 
 		String hungerResponse;
@@ -81,7 +115,7 @@ public class GrubaHubHub {
 			System.out.println("Hello! Welcome to Gruba Hub Hub. Are you feeling hungry today?");
 			hungerResponse = userInput.next();
 		}
-		
+
 		if (hungerResponse.equalsIgnoreCase("no")) {
 			System.out.println("Awwww. We'll help you find something next time.");
 		} else if (hungerResponse.equalsIgnoreCase("yes")) {
@@ -95,462 +129,514 @@ public class GrubaHubHub {
 					System.out.println("Please only choose from 1, 2, 3, 4, or 5.");
 					category = userInput.nextInt();
 				}
-					// Asian
-					if (category == 1) {
-						System.out.println("You have chosen Asian Cuisine!");
-						System.out.println("Please select your budget for this meal:");
-						System.out.println("1: Low ($0-$5)");
-						System.out.println("2: Medium ($5-$9) ");
-						System.out.println("3: All Out ($9+) ");
+				// Asian
+				if (category == 1) {
+					System.out.println("You have chosen Asian Cuisine!");
+					System.out.println("Please select your budget for this meal:");
+					System.out.println("1: Low ($0-$5)");
+					System.out.println("2: Medium ($5-$9) ");
+					System.out.println("3: All Out ($9+) ");
+					budget = userInput.nextInt();
+					while (budget > 3 && budget != 1 && budget != 2 && budget != 3) {
+						System.out.println("Please select from either 1, 2, or 3.");
 						budget = userInput.nextInt();
-						while (budget > 3) {
-							System.out.println("Please select from either 1, 2, or 3.");
-							budget = userInput.nextInt();
+					}
+					if (budget == 1) {
+						System.out.println("Here are your dining options for a low budget:");
+						System.out.println("Cravings:");
+						System.out.println(CravingsL);
+						for (int i = 0; i < CravingsP.length; i++) {
+							if (CravingsP[i] < 5) {
+								System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
+							}
 						}
-						if (budget == 1) {
-							System.out.println("Here are your dining options for a low budget:");
-							System.out.println("Cravings:");
-							for (int i = 0; i < CravingsP.length; i++) {
-								if (CravingsP[i] < 5) {
-									System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
-								}
+						System.out.println("--------------");
+						System.out.println("Sakanaya:");
+						System.out.println(SakanayaL);
+						for (int i = 0; i < SakanayaP.length; i++) {
+							if (SakanayaP[i] < 5) {
+								System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Sakanaya:");
-							for (int i = 0; i < SakanayaP.length; i++) {
-								if (SakanayaP[i] < 5) {
-									System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("SpoonHouse:");
+						System.out.println(SpoonHouseL);
+						for (int i = 0; i < SpoonHouseP.length; i++) {
+							if (SpoonHouseP[i] < 5) {
+								System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("SpoonHouse:");
-							for (int i = 0; i < SpoonHouseP.length; i++) {
-								if (SpoonHouseP[i] < 5) {
-									System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("GoldenWok:");
+						System.out.println(GoldenWokL);
+						for (int i = 0; i < GoldenWokP.length; i++) {
+							if (GoldenWokP[i] < 5) {
+								System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("GoldenWok:");
-							for (int i = 0; i < GoldenWokP.length; i++) {
-								if (GoldenWokP[i] < 5) {
-									System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
-								}
+						}
+					} else if (budget == 2) {
+						System.out.println("Here are your dining options for a medium budget:");
+						System.out.println("Cravings:");
+						System.out.println(CravingsL);
+						for (int i = 0; i < CravingsP.length; i++) {
+							if (CravingsP[i] > 5 && CravingsP[i] < 9) {
+								System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
 							}
-						} else if (budget == 2) {
-							System.out.println("Here are your dining options for a medium budget:");
-							System.out.println("Cravings:");
-							for (int i = 0; i < CravingsP.length; i++) {
-								if (CravingsP[i] > 5 && CravingsP[i] < 9) {
-									System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Sakanaya:");
+						System.out.println(SakanayaL);
+						for (int i = 0; i < SakanayaP.length; i++) {
+							if (SakanayaP[i] > 5 && SakanayaP[i] < 9) {
+								System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Sakanaya:");
-							for (int i = 0; i < SakanayaP.length; i++) {
-								if (SakanayaP[i] > 5 && SakanayaP[i] < 9) {
-									System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("SpoonHouse:");
+						System.out.println(SpoonHouseL);
+						for (int i = 0; i < SpoonHouseP.length; i++) {
+							if (SpoonHouseP[i] > 5 && SpoonHouseP[i] < 9) {
+								System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("SpoonHouse:");
-							for (int i = 0; i < SpoonHouseP.length; i++) {
-								if (SpoonHouseP[i] > 5 && SpoonHouseP[i] < 9) {
-									System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("GoldenWok:");
+						System.out.println(GoldenWokL);
+						for (int i = 0; i < GoldenWokP.length; i++) {
+							if (GoldenWokP[i] > 5 && GoldenWokP[i] < 9) {
+								System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("GoldenWok:");
-							for (int i = 0; i < GoldenWokP.length; i++) {
-								if (GoldenWokP[i] > 5 && GoldenWokP[i] < 9) {
-									System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
-								}
+						}
+					} else if (budget == 3) {
+						System.out.println("Here are your dining options for an all out budget:");
+						System.out.println("Cravings:");
+						System.out.println(CravingsL);
+						for (int i = 0; i < CravingsP.length; i++) {
+							if (CravingsP[i] > 9) {
+								System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
 							}
-						} else if (budget == 3) {
-							System.out.println("Here are your dining options for an all out budget:");
-							System.out.println("Cravings:");
-							for (int i = 0; i < CravingsP.length; i++) {
-								if (CravingsP[i] > 9) {
-									System.out.println(Cravings[i] + ": " + "$" + CravingsP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Sakanaya:");
+						System.out.println(SakanayaL);
+						for (int i = 0; i < SakanayaP.length; i++) {
+							if (SakanayaP[i] > 9) {
+								System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Sakanaya:");
-							for (int i = 0; i < SakanayaP.length; i++) {
-								if (SakanayaP[i] > 9) {
-									System.out.println(Sakanaya[i] + ": " + "$" + SakanayaP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("SpoonHouse:");
+						System.out.println(SpoonHouseL);
+						for (int i = 0; i < SpoonHouseP.length; i++) {
+							if (SpoonHouseP[i] > 9) {
+								System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("SpoonHouse:");
-							for (int i = 0; i < SpoonHouseP.length; i++) {
-								if (SpoonHouseP[i] > 9) {
-									System.out.println(SpoonHouse[i] + ": " + "$" + SpoonHouseP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("GoldenWok:");
-							for (int i = 0; i < GoldenWokP.length; i++) {
-								if (GoldenWokP[i] > 9) {
-									System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("GoldenWok:");
+						System.out.println(GoldenWokL);
+						for (int i = 0; i < GoldenWokP.length; i++) {
+							if (GoldenWokP[i] > 9) {
+								System.out.println(GoldenWok[i] + ": " + "$" + GoldenWokP[i]);
 							}
 						}
 					}
-					// Latin American
-					else if (category == 2) {
-						System.out.println("You have chosen Latin American Cuisine!");
-						System.out.println("Please select your budget for this meal:");
-						System.out.println("1: Low ($0-$5)");
-						System.out.println("2: Medium ($5-$9) ");
-						System.out.println("3: All Out ($9+) ");
+				}
+				// Latin American
+				else if (category == 2) {
+					System.out.println("You have chosen Latin American Cuisine!");
+					System.out.println("Please select your budget for this meal:");
+					System.out.println("1: Low ($0-$5)");
+					System.out.println("2: Medium ($5-$9) ");
+					System.out.println("3: All Out ($9+) ");
+					budget = userInput.nextInt();
+					while (budget > 3) {
+						System.out.println("Please select from either 1, 2, or 3.");
 						budget = userInput.nextInt();
-						while (budget > 3) {
-							System.out.println("Please select from either 1, 2, or 3.");
-							budget = userInput.nextInt();
+					}
+					if (budget == 1) {
+						System.out.println("Here are your dining options for a low budget:");
+						System.out.println("Chipotle:");
+						System.out.println(ChipotleL);
+						for (int i = 0; i < ChipotleP.length; i++) {
+							if (ChipotleP[i] < 5) {
+								System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
+							}
 						}
-						if (budget == 1) {
-							System.out.println("Here are your dining options for a low budget:");
-							System.out.println("Chipotle:");
-							for (int i = 0; i < ChipotleP.length; i++) {
-								if (ChipotleP[i] < 5) {
-									System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
-								}
+						System.out.println("--------------");
+						System.out.println("Maize:");
+						System.out.println(MaizeL);
+						for (int i = 0; i < MaizeP.length; i++) {
+							if (MaizeP[i] < 5) {
+								System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Maize:");
-							for (int i = 0; i < MaizeP.length; i++) {
-								if (MaizeP[i] < 5) {
-									System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Burrito King:");
+						System.out.println(BurritoKingL);
+						for (int i = 0; i < BurritoKingP.length; i++) {
+							if (BurritoKingP[i] < 5) {
+								System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Burrito King:");
-							for (int i = 0; i < BurritoKingP.length; i++) {
-								if (BurritoKingP[i] < 5) {
-									System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
-								}
+						}
+					} else if (budget == 2) {
+						System.out.println("Here are your dining options for a medium budget:");
+						System.out.println("Chipotle:");
+						System.out.println(ChipotleL);
+						for (int i = 0; i < ChipotleP.length; i++) {
+							if (ChipotleP[i] > 5 && ChipotleP[i] < 9) {
+								System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
 							}
-						} else if (budget == 2) {
-							System.out.println("Here are your dining options for a medium budget:");
-							System.out.println("Chipotle:");
-							for (int i = 0; i < ChipotleP.length; i++) {
-								if (ChipotleP[i] > 5 && ChipotleP[i] < 9) {
-									System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Maize:");
+						System.out.println(MaizeL);
+						for (int i = 0; i < MaizeP.length; i++) {
+							if (MaizeP[i] > 5 && MaizeP[i] < 9) {
+								System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Maize:");
-							for (int i = 0; i < MaizeP.length; i++) {
-								if (MaizeP[i] > 5 && MaizeP[i] < 9) {
-									System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Burrito King:");
+						System.out.println(BurritoKingL);
+						for (int i = 0; i < BurritoKingP.length; i++) {
+							if (BurritoKingP[i] > 5 && BurritoKingP[i] < 9) {
+								System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Burrito King:");
-							for (int i = 0; i < BurritoKingP.length; i++) {
-								if (BurritoKingP[i] > 5 && BurritoKingP[i] < 9) {
-									System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
-								}
+						}
+					} else if (budget == 3) {
+						System.out.println("Here are your dining options for an all out budget:");
+						System.out.println("Chipotle:");
+						System.out.println(ChipotleL);
+						for (int i = 0; i < ChipotleP.length; i++) {
+							if (ChipotleP[i] > 9) {
+								System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
 							}
-						} else if (budget == 3) {
-							System.out.println("Here are your dining options for an all out budget:");
-							System.out.println("Chipotle:");
-							for (int i = 0; i < ChipotleP.length; i++) {
-								if (ChipotleP[i] > 9) {
-									System.out.println(Chipotle[i] + ": " + "$" + ChipotleP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Maize:");
+						System.out.println(MaizeL);
+						for (int i = 0; i < MaizeP.length; i++) {
+							if (MaizeP[i] > 9) {
+								System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Maize:");
-							for (int i = 0; i < MaizeP.length; i++) {
-								if (MaizeP[i] > 9) {
-									System.out.println(Maize[i] + ": " + "$" + MaizeP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("BurritoKing:");
-							for (int i = 0; i < BurritoKingP.length; i++) {
-								if (BurritoKingP[i] > 9) {
-									System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("BurritoKing:");
+						System.out.println(BurritoKingL);
+						for (int i = 0; i < BurritoKingP.length; i++) {
+							if (BurritoKingP[i] > 9) {
+								System.out.println(BurritoKing[i] + ": " + "$" + BurritoKingP[i]);
 							}
 						}
 					}
-					// American
-					else if (category == 3) {
-						System.out.println("You have chosen American Cuisine!");
-						System.out.println("Please select your budget for this meal:");
-						System.out.println("1: Low ($0-$5)");
-						System.out.println("2: Medium ($5-$9) ");
-						System.out.println("3: All Out ($9+) ");
+				}
+				// American
+				else if (category == 3) {
+					System.out.println("You have chosen American Cuisine!");
+					System.out.println("Please select your budget for this meal:");
+					System.out.println("1: Low ($0-$5)");
+					System.out.println("2: Medium ($5-$9) ");
+					System.out.println("3: All Out ($9+) ");
+					budget = userInput.nextInt();
+					while (budget > 3) {
+						System.out.println("Please select from either 1, 2, or 3.");
 						budget = userInput.nextInt();
-						while (budget > 3) {
-							System.out.println("Please select from either 1, 2, or 3.");
-							budget = userInput.nextInt();
+					}
+					if (budget == 1) {
+						System.out.println("Here are your dining options for a low budget:");
+						System.out.println("McDonald's:");
+						System.out.println(McDonaldsL);
+						for (int i = 0; i < McDonaldsP.length; i++) {
+							if (McDonaldsP[i] < 5) {
+								System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
+							}
 						}
-						if (budget == 1) {
-							System.out.println("Here are your dining options for a low budget:");
-							System.out.println("McDonald's:");
-							for (int i = 0; i < McDonaldsP.length; i++) {
-								if (McDonaldsP[i] < 5) {
-									System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
-								}
+						System.out.println("--------------");
+						System.out.println("Burger King");
+						System.out.println(BurgerKingL);
+						for (int i = 0; i < BurgerKingP.length; i++) {
+							if (BurgerKingP[i] < 5) {
+								System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Burger King");
-							for (int i = 0; i < BurgerKingP.length; i++) {
-								if (BurgerKingP[i] < 5) {
-									System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Subway:");
+						System.out.println(SubwayL);
+						for (int i = 0; i < SubwayP.length; i++) {
+							if (SubwayP[i] < 5) {
+								System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Subway:");
-							for (int i = 0; i < SubwayP.length; i++) {
-								if (SubwayP[i] < 5) {
-									System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Panera");
+						System.out.println(PaneraL);
+						for (int i = 0; i < PaneraP.length; i++) {
+							if (PaneraP[i] < 5) {
+								System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
 							}
-							System.out.println("--------------");
-							System.out.println("Panera");
-							for (int i = 0; i < PaneraP.length; i++) {
-								if (PaneraP[i] < 5) {
-									System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
-								}
+						}
+					} else if (budget == 2) {
+						System.out.println("Here are your dining options for a medium budget:");
+						System.out.println("McDonald's:");
+						System.out.println(McDonaldsL);
+						for (int i = 0; i < McDonaldsP.length; i++) {
+							if (McDonaldsP[i] > 5 && McDonaldsP[i] < 9) {
+								System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
 							}
-						} else if (budget == 2) {
-							System.out.println("Here are your dining options for a medium budget:");
-							System.out.println("McDonald's:");
-							for (int i = 0; i < McDonaldsP.length; i++) {
-								if (McDonaldsP[i] > 5 && McDonaldsP[i] < 9) {
-									System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Burger King:");
-							for (int i = 0; i < BurgerKingP.length; i++) {
-								if (BurgerKingP[i] > 5 && BurgerKingP[i] < 9) {
-									System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
-								}
-							}
-
-							System.out.println("--------------");
-							System.out.println("Subway:");
-							for (int i = 0; i < SubwayP.length; i++) {
-								if (SubwayP[i] > 5 && SubwayP[i] < 9) {
-									System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Panera");
-							for (int i = 0; i < PaneraP.length; i++) {
-								if (PaneraP[i] > 5 && PaneraP[i] < 9) {
-									System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
-								}
-							}
-						} else if (budget == 3) {
-							System.out.println("Here are your dining options for an all out budget:");
-							System.out.println("McDonald's:");
-							for (int i = 0; i < McDonaldsP.length; i++) {
-								if (McDonaldsP[i] > 9) {
-									System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Burger King:");
-							for (int i = 0; i < BurgerKingP.length; i++) {
-								if (BurgerKingP[i] > 9) {
-									System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Subway:");
-							for (int i = 0; i < SubwayP.length; i++) {
-								if (SubwayP[i] > 9) {
-									System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Panera");
-							for (int i = 0; i < PaneraP.length; i++) {
-								if (PaneraP[i] > 9) {
-									System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
-								}
+						}
+						System.out.println("--------------");
+						System.out.println("Burger King:");
+						System.out.println(BurgerKingL);
+						for (int i = 0; i < BurgerKingP.length; i++) {
+							if (BurgerKingP[i] > 5 && BurgerKingP[i] < 9) {
+								System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
 							}
 						}
 
-					}
-					// Indian/Middle Eastern
-					else if (category == 4) {
-						System.out.println("You have chosen Indian Cuisine!");
-						System.out.println("Please select your budget for this meal:");
-						System.out.println("1: Low ($0-$5)");
-						System.out.println("2: Medium ($5-$9) ");
-						System.out.println("3: All Out ($9+) ");
-						budget = userInput.nextInt();
-						while (budget > 3) {
-							System.out.println("Please select from either 1, 2, or 3.");
-							budget = userInput.nextInt();
-						}
-						if (budget == 1) {
-							System.out.println("Here are your dining options for a low budget:");
-							System.out.println("Ambar:");
-							for (int i = 0; i < AmbarP.length; i++) {
-								if (AmbarP[i] < 5) {
-									System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Bombay:");
-							for (int i = 0; i < BombayP.length; i++) {
-								if (BombayP[i] < 5) {
-									System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Amaravati:");
-							for (int i = 0; i < AmaravatiP.length; i++) {
-								if (AmaravatiP[i] < 5) {
-									System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
-								}
-							}
-						} else if (budget == 2) {
-							System.out.println("Here are your dining options for a medium budget:");
-							System.out.println("Ambar:");
-							for (int i = 0; i < AmbarP.length; i++) {
-								if (AmbarP[i] > 5 && AmbarP[i] < 9) {
-									System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Bombay:");
-							for (int i = 0; i < BombayP.length; i++) {
-								if (BombayP[i] > 5 && BombayP[i] < 9) {
-									System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Amaravati:");
-							for (int i = 0; i < AmaravatiP.length; i++) {
-								if (AmaravatiP[i] > 5 && AmaravatiP[i] < 9) {
-									System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
-								}
-							}
-						} else if (budget == 3) {
-							System.out.println("Here are your dining options for an all out budget:");
-							System.out.println("Ambar:");
-							for (int i = 0; i < AmbarP.length; i++) {
-								if (AmbarP[i] > 9) {
-									System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Bombay:");
-							for (int i = 0; i < BombayP.length; i++) {
-								if (BombayP[i] > 9) {
-									System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Amaravati:");
-							for (int i = 0; i < AmaravatiP.length; i++) {
-								if (AmaravatiP[i] > 9) {
-									System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
-								}
+						System.out.println("--------------");
+						System.out.println("Subway:");
+						System.out.println(SubwayL);
+						for (int i = 0; i < SubwayP.length; i++) {
+							if (SubwayP[i] > 5 && SubwayP[i] < 9) {
+								System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
 							}
 						}
-					}
-					// Desserts
-					else if (category == 5) {
-						System.out.println("You have chosen Desserts!");
-						System.out.println("Please select your budget for this meal:");
-						System.out.println("1: Low ($0-$5)");
-						System.out.println("2: Medium ($5-$9) ");
-						System.out.println("3: All Out ($9+) ");
-						budget = userInput.nextInt();
-						while (budget > 3) {
-							System.out.println("Please select from either 1, 2, or 3.");
-							budget = userInput.nextInt();
-						}
-						if (budget == 1) {
-							System.out.println("Here are your dining options for a low budget:");
-							System.out.println("Insomnia Cookies:");
-							for (int i = 0; i < InsomniaCookiesP.length; i++) {
-								if (InsomniaCookiesP[i] < 5) {
-									System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Coldstone:");
-							for (int i = 0; i < ColdstoneP.length; i++) {
-								if (ColdstoneP[i] < 5) {
-									System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Paris Super:");
-							for (int i = 0; i < ParisSuperP.length; i++) {
-								if (ParisSuperP[i] < 5) {
-									System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
-								}
-							}
-						} else if (budget == 2) {
-							System.out.println("Here are your dining options for a medium budget:");
-							System.out.println("Insomnia Cookies:");
-							for (int i = 0; i < InsomniaCookiesP.length; i++) {
-								if (InsomniaCookiesP[i] > 5 && InsomniaCookiesP[i] < 9) {
-									System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Coldstone:");
-							for (int i = 0; i < ColdstoneP.length; i++) {
-								if (ColdstoneP[i] > 5 && ColdstoneP[i] < 9) {
-									System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Paris Super:");
-							for (int i = 0; i < ParisSuperP.length; i++) {
-								if (ParisSuperP[i] > 5 && ParisSuperP[i] < 9) {
-									System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
-								}
-							}
-						} else if (budget == 3) {
-							System.out.println("Here are your dining options for an all out budget:");
-							System.out.println("Insomnia Cookies:");
-							for (int i = 0; i < InsomniaCookiesP.length; i++) {
-								if (InsomniaCookiesP[i] > 9) {
-									System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Coldstone:");
-							for (int i = 0; i < ColdstoneP.length; i++) {
-								if (ColdstoneP[i] > 9) {
-									System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
-								}
-							}
-							System.out.println("--------------");
-							System.out.println("Paris Super:");
-							for (int i = 0; i < ParisSuperP.length; i++) {
-								if (ParisSuperP[i] > 9) {
-									System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
-								}
+						System.out.println("--------------");
+						System.out.println("Panera");
+						System.out.println(PaneraL);
+						for (int i = 0; i < PaneraP.length; i++) {
+							if (PaneraP[i] > 5 && PaneraP[i] < 9) {
+								System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
 							}
 						}
-
+					} else if (budget == 3) {
+						System.out.println("Here are your dining options for an all out budget:");
+						System.out.println("McDonald's:");
+						System.out.println(McDonaldsL);
+						for (int i = 0; i < McDonaldsP.length; i++) {
+							if (McDonaldsP[i] > 9) {
+								System.out.println(McDonalds[i] + ": " + "$" + McDonaldsP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Burger King:");
+						System.out.println(BurgerKingL);
+						for (int i = 0; i < BurgerKingP.length; i++) {
+							if (BurgerKingP[i] > 9) {
+								System.out.println(BurgerKing[i] + ": " + "$" + BurgerKingP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Subway:");
+						System.out.println(SubwayL);
+						for (int i = 0; i < SubwayP.length; i++) {
+							if (SubwayP[i] > 9) {
+								System.out.println(Subway[i] + ": " + "$" + SubwayP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Panera");
+						System.out.println(PaneraL);
+						for (int i = 0; i < PaneraP.length; i++) {
+							if (PaneraP[i] > 9) {
+								System.out.println(Panera[i] + ": " + "$" + PaneraP[i]);
+							}
+						}
 					}
 
-					System.out.println("Would you like to search again?");
+				}
+				// Indian/Middle Eastern
+				else if (category == 4) {
+					System.out.println("You have chosen Indian Cuisine!");
+					System.out.println("Please select your budget for this meal:");
+					System.out.println("1: Low ($0-$5)");
+					System.out.println("2: Medium ($5-$9) ");
+					System.out.println("3: All Out ($9+) ");
+					budget = userInput.nextInt();
+					while (budget > 3) {
+						System.out.println("Please select from either 1, 2, or 3.");
+						budget = userInput.nextInt();
+					}
+					if (budget == 1) {
+						System.out.println("Here are your dining options for a low budget:");
+						System.out.println("Ambar:");
+						System.out.println(AmbarL);
+						for (int i = 0; i < AmbarP.length; i++) {
+							if (AmbarP[i] < 5) {
+								System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Bombay:");
+						System.out.println(BombayL);
+						for (int i = 0; i < BombayP.length; i++) {
+							if (BombayP[i] < 5) {
+								System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Amaravati:");
+						System.out.println(AmaravatiL);
+						for (int i = 0; i < AmaravatiP.length; i++) {
+							if (AmaravatiP[i] < 5) {
+								System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
+							}
+						}
+					} else if (budget == 2) {
+						System.out.println("Here are your dining options for a medium budget:");
+						System.out.println("Ambar:");
+						System.out.println(AmbarL);
+						for (int i = 0; i < AmbarP.length; i++) {
+							if (AmbarP[i] > 5 && AmbarP[i] < 9) {
+								System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Bombay:");
+						System.out.println(BombayL);
+						for (int i = 0; i < BombayP.length; i++) {
+							if (BombayP[i] > 5 && BombayP[i] < 9) {
+								System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Amaravati:");
+						System.out.println(AmaravatiL);
+						for (int i = 0; i < AmaravatiP.length; i++) {
+							if (AmaravatiP[i] > 5 && AmaravatiP[i] < 9) {
+								System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
+							}
+						}
+					} else if (budget == 3) {
+						System.out.println("Here are your dining options for an all out budget:");
+						System.out.println("Ambar:");
+						System.out.println(AmbarL);
+						for (int i = 0; i < AmbarP.length; i++) {
+							if (AmbarP[i] > 9) {
+								System.out.println(Ambar[i] + ": " + "$" + AmbarP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Bombay:");
+						System.out.println(BombayL);
+						for (int i = 0; i < BombayP.length; i++) {
+							if (BombayP[i] > 9) {
+								System.out.println(Bombay[i] + ": " + "$" + BombayP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Amaravati:");
+						System.out.println(AmaravatiL);
+						for (int i = 0; i < AmaravatiP.length; i++) {
+							if (AmaravatiP[i] > 9) {
+								System.out.println(Amaravati[i] + ": " + "$" + AmaravatiP[i]);
+							}
+						}
+					}
+				}
+				// Desserts
+				else if (category == 5) {
+					System.out.println("You have chosen Desserts!");
+					System.out.println("Please select your budget for this meal:");
+					System.out.println("1: Low ($0-$5)");
+					System.out.println("2: Medium ($5-$9) ");
+					System.out.println("3: All Out ($9+) ");
+					budget = userInput.nextInt();
+					while (budget > 3) {
+						System.out.println("Please select from either 1, 2, or 3.");
+						budget = userInput.nextInt();
+					}
+					if (budget == 1) {
+						System.out.println("Here are your dining options for a low budget:");
+						System.out.println("Insomnia Cookies:");
+						System.out.println(InsomniaL);
+						for (int i = 0; i < InsomniaCookiesP.length; i++) {
+							if (InsomniaCookiesP[i] < 5) {
+								System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Coldstone:");
+						System.out.println(ColdstoneL);
+						for (int i = 0; i < ColdstoneP.length; i++) {
+							if (ColdstoneP[i] < 5) {
+								System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Paris Super:");
+						System.out.println(ParisL);
+						for (int i = 0; i < ParisSuperP.length; i++) {
+							if (ParisSuperP[i] < 5) {
+								System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
+							}
+						}
+					} else if (budget == 2) {
+						System.out.println("Here are your dining options for a medium budget:");
+						System.out.println("Insomnia Cookies:");
+						System.out.println(InsomniaL);
+						for (int i = 0; i < InsomniaCookiesP.length; i++) {
+							if (InsomniaCookiesP[i] > 5 && InsomniaCookiesP[i] < 9) {
+								System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Coldstone:");
+						System.out.println(ColdstoneL);
+						for (int i = 0; i < ColdstoneP.length; i++) {
+							if (ColdstoneP[i] > 5 && ColdstoneP[i] < 9) {
+								System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Paris Super:");
+						System.out.println(ParisL);
+						for (int i = 0; i < ParisSuperP.length; i++) {
+							if (ParisSuperP[i] > 5 && ParisSuperP[i] < 9) {
+								System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
+							}
+						}
+					} else if (budget == 3) {
+						System.out.println("Here are your dining options for an all out budget:");
+						System.out.println("Insomnia Cookies:");
+						System.out.println(InsomniaL);
+						for (int i = 0; i < InsomniaCookiesP.length; i++) {
+							if (InsomniaCookiesP[i] > 9) {
+								System.out.println(InsomniaCookies[i] + ": " + "$" + InsomniaCookiesP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Coldstone:");
+						System.out.println(ColdstoneL);
+						for (int i = 0; i < ColdstoneP.length; i++) {
+							if (ColdstoneP[i] > 9) {
+								System.out.println(Coldstone[i] + ": " + "$" + ColdstoneP[i]);
+							}
+						}
+						System.out.println("--------------");
+						System.out.println("Paris Super:");
+						System.out.println(ParisL);
+						for (int i = 0; i < ParisSuperP.length; i++) {
+							if (ParisSuperP[i] > 9) {
+								System.out.println(ParisSuper[i] + ": " + "$" + ParisSuperP[i]);
+							}
+						}
+					}
+
+				}
+
+				System.out.println("Would you like to search again?");
+				hungerResponse = userInput.next();
+				while ((hungerResponse.length() >= 3 || hungerResponse.length() <= 3)
+						&& (!hungerResponse.equalsIgnoreCase("yes")) && !hungerResponse.equalsIgnoreCase("no")) {
+					System.out.println("Please use only 'Yes' or 'No'.");
 					hungerResponse = userInput.next();
-					while ((hungerResponse.length() >= 3 || hungerResponse.length() <= 3) && (!hungerResponse.equalsIgnoreCase("yes")) && !hungerResponse.equalsIgnoreCase("no")) {
-						System.out.println("Please use only 'Yes' or 'No'.");
-						hungerResponse = userInput.next();
-					}
-					if (hungerResponse.equalsIgnoreCase("no")) {
-						System.out.println("Thank You! See you next time!");
-						
-					}
+				}
+				if (hungerResponse.equalsIgnoreCase("no")) {
+					System.out.println("Thank You! See you next time!");
+
+				}
 			}
 		}
 	}
